@@ -2,34 +2,41 @@
 
 ## Overview
 
-Encoders failed to convey the meaning of a full sentence, although word embedding encoders have shown successes in providing good solutions for various NLP tasks. 
-The difficulty of how to capture the relationships among multiple words remains a question to be solved.  
-This project highlights the results achieved by SimCSE research, which improved the average of 76.3% compared to previous best results. 
-SimCSE, is a simple contrastive sentence embedding framework, which can produce superior sentence embeddings, from either unlabeled or labeled data. 
-The supervised model simply predicts the input sentence itself with only dropout used as noise. It’s a framework, based on the BERTbase model and evaluated with 
-SentEval of FaceBook research (STS).
+Encoders failed to convey the meaning of a full sentence, although word embedding encoders have shown successes in providing 
+good solutions for various NLP tasks. The difficulty of how to capture the relationships among multiple words remains a 
+question to be solved. This project highlights the results achieved by SimCSE research, which improved the average 
+of 76.3% compared to previous best results. 
+SimCSE, is a simple contrastive sentence embedding framework, which can produce superior sentence embeddings, from either 
+unlabeled or labeled data. 
+The supervised model simply predicts the input sentence itself with only dropout used as noise. It’s a framework, based 
+on the BERTbase model and evaluated with SentEval of FaceBook research (STS).
 
 ## Main concept
 BERT
-A transformer-based ML technique for (NLP) pre-training, introduced in 2019 by Google, and has become a ubiquitous baseline in NLP experiments.
+A transformer-based ML technique for (NLP) pre-training, introduced in 2019 by Google, and has become a ubiquitous baseline 
+in NLP experiments.
 
-The **Transformer** architecture that selectively concentrates on a discrete aspect of information, whether considered subjective or objective, 
-encourages the option of training parallelization which led to the development of a pretrained systems like BERT and GPT. 
+The **Transformer** architecture that selectively concentrates on a discrete aspect of information, whether considered 
+subjective or objective, encourages the option of training parallelization which led to the development of a pretrained 
+systems like BERT and GPT. 
 
-Created on a **pre-trained** on a large corpus of unlabelled text including the entire Wikipedia(that’s 2,500 million words!) and Book Corpus (800 million words). 
+Created on a **pre-trained** on a large corpus of unlabelled text including the entire Wikipedia(that’s 2,500 million words!) 
+and Book Corpus (800 million words). 
 
-Includes a **Bidirectional** in which learns information from both, left and right, sides of a token’s context during the training phase. Which is important 
-for truly understanding the meaning of a language. 
+Includes a **Bidirectional** in which learns information from both, left and right, sides of a token’s context during the 
+training phase. Which is important for truly understanding the meaning of a language. 
 
-This characteristic and the ELMO solution for same words having different meanings based on their context (Polysemy), were the foundations for BERT 
-implementation under the concept that Transfer Learning in NLP = Pre-Training first and Fine-Tuning afterwards. 
+This characteristic and the ELMO solution for same words having different meanings based on their context (Polysemy), 
+were the foundations for BERT implementation under the concept that Transfer Learning in NLP = Pre-Training first 
+and Fine-Tuning afterwards. 
 
 BERT input embedding combined of 3 embeddings:
 **Position Embeddings**: Uses positional embeddings to express the position of words in a sentence.
-**Segment Embeddings**:  Can also take sentence pairs as inputs for tasks (Question-Answering).
-                         That’s why it learns a unique embedding for the first and the second sentences to help the model distinguish between them.
-**Token Embeddings**:    The embeddings learned for the specific token from the WordPiece token vocabulary  Tokenization is the process of encoding a 
-                         string of text into transformer-readable token ID integers. From human-readable text to transformer-readable token IDs.
+**Segment Embeddings**:  Can also take sentence pairs as inputs for tasks (Question-Answering). That’s why it learns a unique 
+                         embedding for the first and the second sentences to help the model distinguish between them.
+**Token Embeddings**:    The embeddings learned for the specific token from the WordPiece token vocabulary  Tokenization is 
+                         the process of encoding a string of text into transformer-readable token ID integers. 
+                         From human-readable text to transformer-readable token IDs.
  
 ## Getting Started
 To use the demo, first install the `simcse` package 
@@ -62,16 +69,16 @@ pip install torch==1.7.1
 ```
 Scipy 
 
-An open-source Python library, which claims to provide “industrial-strength natural language processing,”.It is the fastest-running solution. 
-Contain pre-built models: Named entity recognition,part-of-speech (POS) tagging, and classification.Has optimized and added functions that 
-are frequently used in NumPy and Data Science.
+An open-source Python library, which claims to provide “industrial-strength natural language processing,”.It is the 
+fastest-running solution. Contain pre-built models: Named entity recognition,part-of-speech (POS) tagging, and 
+classification.Has optimized and added functions that are frequently used in NumPy and Data Science.
 
 ```bash
 pip install scipy
 ```
 Transformers
 
-Implementation for the architecture that aims to solve sequence-to-sequence tasks while handling long-range dependencies with ease.
+Architecture implementation that aims to solve sequence-to-sequence tasks while handling long-range dependencies with ease.
 
 ```bash
 pip install transformers
@@ -79,7 +86,8 @@ pip install transformers
 
 faiss
 
-An efficient similarity search library.  The faiss is not a necessary dependency for simcse package, if error pop-up, follow the trubleshooting instractions.
+An efficient similarity search library.  The faiss is not a necessary dependency for simcse package, if error pop-up, 
+follow the trubleshooting instractions.
 
 ## Script invocation
 python3 main.py --sentences path/to/sentences.json
@@ -87,8 +95,8 @@ python3 main.py --sentences path/to/sentences.json
 ### Evaluation
 FaceBook research (STS) evaluates sentence embeddings on semantic textual similarity tasks and downstream transfer tasks.
 
-The FaceBook encoder based on a bi-directional LSTM architecture with max pooling, trained on the Stanford Natural Language Inference (SNLI)dataset 
-delivered better encoder results than the known popular approaches like SkipThought or FastSent.
+The FaceBook encoder based on a bi-directional LSTM architecture with max pooling, trained on the Stanford Natural 
+Language Inference (SNLI)dataset delivered better encoder results than the known popular approaches like SkipThought or FastSent.
 
 ### Trained model Background 
 
@@ -208,12 +216,13 @@ This may result in more accidentally created sentences, but mass generated sente
 pip install SimCSE
 ``` 
 
-3. On RuntimeError: Fail to import faiss. If you want to use faiss, install faiss through PyPI. Now the program continues with brute force search.
+3. On RuntimeError: Fail to import faiss. If you want to use faiss, install faiss through PyPI. 
+   Now the program continues with brute force search.
    Be aware: The search results reliability decreases on brute force search
    
    
-WARNING: found out that faiss did not well support Nvidia AMPERE GPUs (3090 and A100). 
-         In that case, you should change to other GPUs or install the CPU version of faiss package.
+   WARNING: found out that faiss did not well support Nvidia AMPERE GPUs (3090 and A100). 
+            In that case, you should change to other GPUs or install the CPU version of faiss package.
 
 For CPU-version faiss, run
 
