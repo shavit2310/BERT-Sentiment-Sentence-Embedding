@@ -13,21 +13,23 @@ SentEval of FaceBook research (STS).
 BERT
 A transformer-based ML technique for (NLP) pre-training, introduced in 2019 by Google, and has become a ubiquitous baseline in NLP experiments.
 
-The **Transformer** architecture that selectively concentrates on a discrete aspect of information, whether considered subjective or objective, encourages the option of training parallelization which led to the development of a pretrained systems like BERT and GPT. 
+The **Transformer** architecture that selectively concentrates on a discrete aspect of information, whether considered subjective or objective, 
+encourages the option of training parallelization which led to the development of a pretrained systems like BERT and GPT. 
 
 Created on a **pre-trained** on a large corpus of unlabelled text including the entire Wikipedia(that’s 2,500 million words!) and Book Corpus (800 million words). 
 
-Includes a **Bidirectional** in which learns information from both, left and right, sides of a token’s context during the training phase. Which is important for truly understanding the meaning of a language. 
+Includes a **Bidirectional** in which learns information from both, left and right, sides of a token’s context during the training phase. Which is important 
+for truly understanding the meaning of a language. 
 
-This characteristic and the ELMO solution for same words having different meanings based on their context (Polysemy), were the foundations for BERT implementation under 
-the concept that Transfer Learning in NLP = Pre-Training first and Fine-Tuning afterwards. 
+This characteristic and the ELMO solution for same words having different meanings based on their context (Polysemy), were the foundations for BERT 
+implementation under the concept that Transfer Learning in NLP = Pre-Training first and Fine-Tuning afterwards. 
 
 BERT input embedding combined of 3 embeddings:
 **Position Embeddings**: Uses positional embeddings to express the position of words in a sentence.
 **Segment Embeddings**:  Can also take sentence pairs as inputs for tasks (Question-Answering).
                          That’s why it learns a unique embedding for the first and the second sentences to help the model distinguish between them.
-**Token Embeddings**:    The embeddings learned for the specific token from the WordPiece token vocabulary  Tokenization is the process of encoding a string of text into
-                         transformer-readable token ID integers. From human-readable text to transformer-readable token IDs.
+**Token Embeddings**:    The embeddings learned for the specific token from the WordPiece token vocabulary  Tokenization is the process of encoding a 
+                         string of text into transformer-readable token ID integers. From human-readable text to transformer-readable token IDs.
  
 ## Getting Started
 To use the demo, first install the `simcse` package 
@@ -60,7 +62,9 @@ pip install torch==1.7.1
 ```
 Scipy 
 
-An open-source Python library, which claims to provide “industrial-strength natural language processing,”.It is the fastest-running solution. Contain pre-built models: Named entity recognition,part-of-speech (POS) tagging, and classification.Has optimized and added functions that are frequently used in NumPy and Data Science.
+An open-source Python library, which claims to provide “industrial-strength natural language processing,”.It is the fastest-running solution. 
+Contain pre-built models: Named entity recognition,part-of-speech (POS) tagging, and classification.Has optimized and added functions that 
+are frequently used in NumPy and Data Science.
 
 ```bash
 pip install scipy
@@ -117,8 +121,8 @@ The following list defines some of characteristics, that tested specifically, in
 
 ## Result Analyzing:
 
-First of it's important to mention that multiple sentence can be retrieved, if the THRESHOLDS boundary is met. And if the embedded input file contains the 
-searched sentence more than once, it will be retrieved as the number of times it appears.
+First of it's important to mention that multiple sentence can be retrieved, if the THRESHOLDS boundary is met. And if the embedded input file 
+contains the searched sentence more than once, it will be retrieved as the number of times it appears.
 Important to emphasize that when a sentence generates a similar sentence, it will get the same score when it is produced in reverse order.
 Not surprisingly, the result shows no distinguish between sentences that contain words with uppercase / lowercase, since all texts lowercase, before WordPiece tokenization.
 
@@ -193,10 +197,10 @@ This may result in more accidentally created sentences, but mass generated sente
    replace the row, as following: 
 
    def __array__(self, dtype=None):
-    if dtype is None:
-      return self.numpy() -> return self.detach().numpy()
-    else:
-    return self.numpy().astype(dtype, copy=False)
+      if dtype is None:
+        return self.numpy() -> return self.detach().numpy()
+      else:
+        return self.numpy().astype(dtype, copy=False)
 ```
 2. On ModuleNotFoundError: No module named 'simcse', install: 
 
@@ -228,8 +232,8 @@ pip install faiss-gpu
 Credit for the SimCSE project:
 
 ```bibtex
-@inproceedings{gao2021simcse, title={{SimCSE}: Simple Contrastive Learning of Sentence Embeddings},
- author={Gao, Tianyu and Yao, Xingcheng and Chen, Danqi}, booktitle={Empirical Methods in Natural Language Processing (EMNLP)}, year={2021}
+@inproceedings{gao2021simcse, title={{SimCSE}: Simple Contrastive Learning of Sentence Embeddings}, 
+author={Gao, Tianyu and Yao, Xingcheng and Chen, Danqi}, booktitle={Empirical Methods in Natural Language Processing (EMNLP)}, year={2021}
 }
 ```
 ## References
