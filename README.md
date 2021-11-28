@@ -232,17 +232,18 @@ pip install SimCSE
    WARNING: found out that faiss did not well support Nvidia AMPERE GPUs (3090 and A100). 
             In that case, you should change to other GPUs or install the CPU version of faiss package.
 
-For CPU-version faiss, run
+   For CPU-version faiss, run
+  
+   ```bash
+   pip install faiss-cpu
+   ```
 
-```bash
-pip install faiss-cpu
-```
+   For CPU-version faiss, run
 
-For CPU-version faiss, run
+   ```bash
+   pip install faiss-gpu
+   ```
 
-```bash
-pip install faiss-gpu
-```
 ## References
 
 Details on the [SimSCE](https://arxiv.org/pdf/2104.08821.pdf) framework research.<br/>
