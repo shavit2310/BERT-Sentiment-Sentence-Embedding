@@ -95,6 +95,8 @@ follow the trubleshooting instractions.
 
 python3 main.py --sentences path/to/sentences.json
 
+## Background of the Pretrained model  
+
 ### Evaluation
 
 FaceBook research (STS) evaluates sentence embeddings on semantic textual similarity tasks and downstream transfer tasks.
@@ -102,7 +104,7 @@ FaceBook research (STS) evaluates sentence embeddings on semantic textual simila
 The FaceBook encoder based on a bi-directional LSTM architecture with max pooling, trained on the Stanford Natural <br/>
 Language Inference (SNLI)dataset delivered better encoder results than the known popular approaches like SkipThought or FastSent.
 
-### Trained model Background 
+### Trained model 
 
 **Data**
 
@@ -111,7 +113,9 @@ For supervised SimCSE, 1 million sentences from NLI datasets were sampled.
 The **sup-simcse-bert-base-uncased** model bases on the BERT uncased pre-trained model.
 Meaning, the text has been lowercased before WordPiece tokenization.
 
-## Evaluate the similarity results
+## Analyze results
+
+### Evaluation scaling
 
 Similarity score is continuous number from 0 (lowest-not related at all), to 1 (highest-equal sentences). <br/>
 since its calculated score, once a while it little bit higher the 1 or lower. The scores are rounded to 4 digits after the dot.<br/>
@@ -135,7 +139,7 @@ individually and together (hard to validate complexity characteristics):
 - Phrases, like: give you up vs give you pencil,
 - Mistakes \ errors in the similarity score .
 
-## Result Analyzing:
+## Review results
 
 First of it's important to mention that multiple sentence can be retrieved, if the THRESHOLDS boundary is met. And if the embedded input file 
 contains the searched sentence more than once, it will be retrieved as the number of times it appears.
@@ -196,7 +200,7 @@ where as “she broke the partnership” vs “she broke the table” scored as 
 "life is pointless” vs “Without geometry life is pointless” (wrongly, 0.6498).
 Where interest in full meaning was not achieved, when below 0.4 to “The subject aroused interest” vs “I used to be a banker, but comparing to "I lost interest” or to “As an inverter, I lost interest”, it should have been higher.
 
-## Conclusion
+### Conclusion
 
 There is still a long way to go with fine-tuning toAchieve higher accuracy. There are sentences that have a <br/>
 question mark about them. We are inspired to handle a large number of sentences on the one hand, and on the other hand maintain a <br/>
@@ -208,7 +212,7 @@ setting the threshold to 7.620. This may result in more accidentally created sen
 
 1. On RuntimeError: Can't call numpy() on Tensor that requires grad. Use tensor.detach().numpy() instead.
    Resolved by a compromise solution, replacing the library code as followed:
-```bibtex
+    ```bibtex
    On local_path..->\anaconda3\envs\project_name\Lib\site-packages\torch\tensor.py 
    replace the row, as following: 
 
@@ -217,12 +221,13 @@ setting the threshold to 7.620. This may result in more accidentally created sen
         return self.numpy() -> return self.detach().numpy()
       else:
         return self.numpy().astype(dtype, copy=False)
-```
+    ```
+    
 2. On ModuleNotFoundError: No module named 'simcse', install: 
 
-```bash
-pip install SimCSE
-``` 
+   ```bash
+   pip install SimCSE
+   ``` 
 
 3. On RuntimeError: Fail to import faiss. If you want to use faiss, install faiss through PyPI. 
    Now the program continues with brute force search.
