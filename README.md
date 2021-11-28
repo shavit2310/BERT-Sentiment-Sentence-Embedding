@@ -2,42 +2,42 @@
 
 ## Overview
 
-Encoders failed to convey the meaning of a full sentence, although word embedding encoders have shown successes in providing <b/>
-good solutions for various NLP tasks. The difficulty of how to capture the relationships among multiple words remains a <b/>
-question to be solved. This project highlights the results achieved by SimCSE research, which improved the average <b/>
-of 76.3% compared to previous best results. <b/>
-SimCSE, is a simple contrastive sentence embedding framework, which can produce superior sentence embeddings, from either <b/>
-unlabeled or labeled data. <b/>
-The supervised model simply predicts the input sentence itself with only dropout used as noise. It’s a framework, based <b/>
-on the BERTbase model and evaluated with SentEval of FaceBook research (STS).<b/>
+Encoders failed to convey the meaning of a full sentence, although word embedding encoders have shown successes in providing <br/>
+good solutions for various NLP tasks. The difficulty of how to capture the relationships among multiple words remains a <br/>
+question to be solved. This project highlights the results achieved by SimCSE research, which improved the average <br/>
+of 76.3% compared to previous best results. <br/>
+SimCSE, is a simple contrastive sentence embedding framework, which can produce superior sentence embeddings, from either <br/>
+unlabeled or labeled data. <br/>
+The supervised model simply predicts the input sentence itself with only dropout used as noise. It’s a framework, based <br/>
+on the BERTbase model and evaluated with SentEval of FaceBook research (STS).<br/>
 
 ## Main concept
 
 BERT
-A transformer-based ML technique for (NLP) pre-training, introduced in 2019 by Google, and has become a ubiquitous baseline <b/>
+A transformer-based ML technique for (NLP) pre-training, introduced in 2019 by Google, and has become a ubiquitous baseline <br/>
 in NLP experiments.
 
-The **Transformer** architecture that selectively concentrates on a discrete aspect of information, whether considered <b/>
-subjective or objective, encourages the option of training parallelization which led to the development of a pretrained <b/>
+The **Transformer** architecture that selectively concentrates on a discrete aspect of information, whether considered <br/>
+subjective or objective, encourages the option of training parallelization which led to the development of a pretrained <br/>
 systems like BERT and GPT. 
 
-Created on a **pre-trained** on a large corpus of unlabelled text including the entire Wikipedia(that’s 2,500 million words!) <b/>
+Created on a **pre-trained** on a large corpus of unlabelled text including the entire Wikipedia(that’s 2,500 million words!) <br/>
 and Book Corpus (800 million words). 
 
-Includes a **Bidirectional** in which learns information from both, left and right, sides of a token’s context during the <b/>
+Includes a **Bidirectional** in which learns information from both, left and right, sides of a token’s context during the <br/>
 training phase. Which is important for truly understanding the meaning of a language. 
 
-This characteristic and the ELMO solution for same words having different meanings based on their context (Polysemy), <b/>
-were the foundations for BERT implementation under the concept that Transfer Learning in NLP = Pre-Training first <b/>
+This characteristic and the ELMO solution for same words having different meanings based on their context (Polysemy), <br/>
+were the foundations for BERT implementation under the concept that Transfer Learning in NLP = Pre-Training first <br/>
 and Fine-Tuning afterwards. 
 
 BERT input embedding combined of 3 embeddings:
-**Position Embeddings**: Uses positional embeddings to express the position of words in a sentence.<b/>
-**Segment Embeddings**:  Can also take sentence pairs as inputs for tasks (Question-Answering). That’s why it learns a unique <b/>
-                         embedding for the first and the second sentences to help the model distinguish between them.<b/>
-**Token Embeddings**:    The embeddings learned for the specific token from the WordPiece token vocabulary  Tokenization is <b/>
-                         the process of encoding a string of text into transformer-readable token ID integers. <b/>
-                         From human-readable text to transformer-readable token IDs.<b/>
+**Position Embeddings**: Uses positional embeddings to express the position of words in a sentence.<br/>
+**Segment Embeddings**:  Can also take sentence pairs as inputs for tasks (Question-Answering). That’s why it learns a unique <br/>
+                         embedding for the first and the second sentences to help the model distinguish between them.<br/>
+**Token Embeddings**:    The embeddings learned for the specific token from the WordPiece token vocabulary  Tokenization is <br/>
+                         the process of encoding a string of text into transformer-readable token ID integers. <br/>
+                         From human-readable text to transformer-readable token IDs.<br/>
  
 ## Getting Started
 
@@ -71,9 +71,9 @@ pip install torch==1.7.1
 ```
 Scipy 
 
-An open-source Python library, which claims to provide “industrial-strength natural language processing,”.It is the <b/>
-fastest-running solution. Contain pre-built models: Named entity recognition,part-of-speech (POS) tagging, and <b/>
-classification.Has optimized and added functions that are frequently used in NumPy and Data Science.<b/>
+An open-source Python library, which claims to provide “industrial-strength natural language processing,”.It is the <br/>
+fastest-running solution. Contain pre-built models: Named entity recognition,part-of-speech (POS) tagging, and <br/>
+classification.Has optimized and added functions that are frequently used in NumPy and Data Science.<br/>
 
 ```bash
 pip install scipy
@@ -99,7 +99,7 @@ python3 main.py --sentences path/to/sentences.json
 
 FaceBook research (STS) evaluates sentence embeddings on semantic textual similarity tasks and downstream transfer tasks.
 
-The FaceBook encoder based on a bi-directional LSTM architecture with max pooling, trained on the Stanford Natural <b/>
+The FaceBook encoder based on a bi-directional LSTM architecture with max pooling, trained on the Stanford Natural <br/>
 Language Inference (SNLI)dataset delivered better encoder results than the known popular approaches like SkipThought or FastSent.
 
 ### Trained model Background 
@@ -113,11 +113,11 @@ Meaning, the text has been lowercased before WordPiece tokenization.
 
 ## Evaluate the similarity results
 
-Similarity score is continuous number from 0 (lowest-not related at all), to 1 (highest-equal sentences). <b/>
-since its calculated score, once a while it little bit higher the 1 or lower. The scores are rounded to 4 digits after the dot.<b/>
-The default value, as set by SimSCE is 0.6. In order to evaluate the similarities and determine on the thresholds value, <b/>
-the generated scores and texts reviewed. As a whole, around 80% most of the generated sentences were accurate, <b/>
-but there are some exceptions. The following list defines some of characteristics, that tested specifically, <b/>
+Similarity score is continuous number from 0 (lowest-not related at all), to 1 (highest-equal sentences). <br/>
+since its calculated score, once a while it little bit higher the 1 or lower. The scores are rounded to 4 digits after the dot.<br/>
+The default value, as set by SimSCE is 0.6. In order to evaluate the similarities and determine on the thresholds value, <br/>
+the generated scores and texts reviewed. As a whole, around 80% most of the generated sentences were accurate, <br/>
+but there are some exceptions. The following list defines some of characteristics, that tested specifically, <br/>
 individually and together (hard to validate complexity characteristics):
 
 - Diverse meaning for a word in different location in the sentence,
@@ -198,11 +198,11 @@ Where interest in full meaning was not achieved, when below 0.4 to “The subjec
 
 ## Conclusion
 
-There is still a long way to go with fine-tuning toAchieve higher accuracy. There are sentences that have a <b/>
-question mark about them. We are inspired to handle a large number of sentences on the one hand, and on the other hand maintain a <b/>
-high level of accuracy and reliability. That is why the value of the thresholds is important. Full confidence is to set the thresholds <b/>
-to 0.8000. A minor number of sentences will be generated incorrectly. But, after reviewing the data set, I decided to go lower, <b/>
-setting the threshold to 7.620. This may result in more accidentally created sentences, but mass generated sentences required, also.<b/>
+There is still a long way to go with fine-tuning toAchieve higher accuracy. There are sentences that have a <br/>
+question mark about them. We are inspired to handle a large number of sentences on the one hand, and on the other hand maintain a <br/>
+high level of accuracy and reliability. That is why the value of the thresholds is important. Full confidence is to set the thresholds <br/>
+to 0.8000. A minor number of sentences will be generated incorrectly. But, after reviewing the data set, I decided to go lower,<br/>
+setting the threshold to 7.620. This may result in more accidentally created sentences, but mass generated sentences required, also.<br/>
 
 ## Troubleshoot
 
@@ -245,18 +245,18 @@ pip install faiss-gpu
 ```
 ## References
 
-Details on the [SimSCE](https://arxiv.org/pdf/2104.08821.pdf) framework research.<b/>
-Details on [SentEval](https://research.fb.com/downloads/senteval/) the evaluation code for sentence embeddings. <b/>
-Introduction to the World BERT [BERT](https://www.analyticsvidhya.com/blog/2019/09/demystifying-bert-groundbreaking-nlp-framework/). <b/>
-[Bert_uncased](https://huggingface.co/bert-base-uncased) pre trained models. <b/>
+Details on the [SimSCE](https://arxiv.org/pdf/2104.08821.pdf) framework research.<br/>
+Details on [SentEval](https://research.fb.com/downloads/senteval/) the evaluation code for sentence embeddings. <br/>
+Introduction to the World BERT [BERT](https://www.analyticsvidhya.com/blog/2019/09/demystifying-bert-groundbreaking-nlp-framework/). <br/>
+[Bert_uncased](https://huggingface.co/bert-base-uncased) pre trained models. <br/>
 
 ## Citation
 
 Credit for the SimCSE project:
 
 ```bibtex
-@inproceedings{gao2021simcse, title={{SimCSE}: Simple Contrastive Learning of Sentence Embeddings}, <b/>
-author={Gao, Tianyu and Yao, Xingcheng and Chen, Danqi}, booktitle={Empirical Methods in Natural Language <b/>
-Processing (EMNLP)}, year={2021}<b/>
+@inproceedings{gao2021simcse, title={{SimCSE}: Simple Contrastive Learning of Sentence Embeddings}, <br/>
+author={Gao, Tianyu and Yao, Xingcheng and Chen, Danqi}, booktitle={Empirical Methods in Natural Language <br/>
+Processing (EMNLP)}, year={2021}<br/>
 }
 ```
