@@ -63,6 +63,9 @@ pip install -r requirements.txt
 
 ### Requirements
 
+Pull the project, and create 2 directroies: data (will contain the ipput json files) and output, which contain the stndard
+output csv files. The results wil be displayed on the screen, also.
+
 Torch
 PyTorch version higher than `1.7.1` 
 
