@@ -88,8 +88,8 @@ pip install transformers
 
 Faiss
 
-An efficient similarity search library. 
-The faiss is not a necessary dependency for simcse package, if error pop-up, follow the troubleshooting instructions.
+An efficient similarity search library. <br/>
+The faiss is not a necessary dependency for simcse package, if error pop-up, follow the troubleshooting instructions.<br/>
 
 ## Script invocation
 
@@ -200,8 +200,8 @@ on a below 0.6 to “The subject **aroused interest**” vs “I used to be a ba
 
 There is, still, a long way to go on fine-tuning in order to achieve higher accuracy.<br/>
 There are, still, question marks on some generated sentences. The value of the thresholds is important, because <br/>
-We are inspired to handle a large number of sentences on the one hand, and on the other hand maintain a high level of accuracy and reliability. <br/>
-Thresholds could have been set to 0.8000, with a minor number of sentences generated incorrectly.<br/>
+We are inspired to handle a large number of sentences on the one hand, and on the other hand maintain a high level of <br/>
+ccuracy and reliability. Thresholds could have been set to 0.8000, with a minor number of sentences generated incorrectly.<br/>
 But, after careful thoughts, as the best balance, I decided to go set it lower, to 7.620. <br/>
 This may result in more accidentally generated sentences, but archives mass generated sentences.<br/>
 
@@ -226,9 +226,9 @@ This may result in more accidentally generated sentences, but archives mass gene
    pip install SimCSE
    ```
 
-3. On RuntimeError: Fail to import faiss. If you want to use faiss, install faiss through PyPI.
-   Now the program continues with brute force search.
-   Be aware: The search results reliability decreases on brute force search
+3. On RuntimeError: Fail to import faiss. If you want to use faiss, install faiss through PyPI.<br/>
+   Now the program continues with brute force search.<br/>
+   Be aware: The search results reliability decreases on brute force search<br/>
    
    
    WARNING: found out that faiss did not well support Nvidia AMPERE GPUs (3090 and A100).
