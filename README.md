@@ -202,8 +202,10 @@ There is, still, a long way to go on fine-tuning in order to achieve higher accu
 There are, still, question marks on some generated sentences. The value of the thresholds is important, because <br/>
 We are inspired to handle a large number of sentences on the one hand, and on the other hand maintain a high level of <br/>
 ccuracy and reliability. Thresholds could have been set to 0.8000, with a minor number of sentences generated incorrectly.<br/>
-But, after careful thoughts, as the best balance, I decided to go set it lower, to 7.620. <br/>
+But, after careful thoughts, as the best balance, I decided to go set it lower, to 0.7620. <br/>
 This may result in more accidentally generated sentences, but archives mass generated sentences.<br/>
+So, if a similarity score between the input sentence and the generated one is 0.7620 or higher it rated as Pass (1), 
+otherwise it rated as 0 (Fail).
 
 ## Troubleshoot
 
