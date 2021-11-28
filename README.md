@@ -188,16 +188,16 @@ This may result in more accidentally created sentences, but mass generated sente
 
 1. On RuntimeError: Can't call numpy() on Tensor that requires grad. Use tensor.detach().numpy() instead.
    Resolved by a compromise solution, replacing the library code as followed:
+```bibtex
+   On local_path..->\anaconda3\envs\project_name\Lib\site-packages\torch\tensor.py 
+   replace the row, as following: 
 
- On local_path..->\anaconda3\envs\project_name\Lib\site-packages\torch\tensor.py 
- replace the row, as following: 
-
- def __array__(self, dtype=None):
- if dtype is None:
- return self.numpy() -> return self.detach().numpy()
- else:
- return self.numpy().astype(dtype, copy=False)
-
+   def __array__(self, dtype=None):
+    if dtype is None:
+      return self.numpy() -> return self.detach().numpy()
+    else:
+    return self.numpy().astype(dtype, copy=False)
+```
 2. On ModuleNotFoundError: No module named 'simcse', install: 
 
 ```bash
@@ -234,7 +234,7 @@ Credit for the SimCSE project:
 ```
 ## References
 
-Details on the [SimSCE](https://arxiv.org/pdf/2104.08821.pdf) framework research.<b>
-Details on [SentEval](https://research.fb.com/downloads/senteval/) the evaluation code for sentence embeddings. <b>
-Introduction to the World BERT [BERT](https://www.analyticsvidhya.com/blog/2019/09/demystifying-bert-groundbreaking-nlp-framework/). <b>
-[Bert_uncased](https://huggingface.co/bert-base-uncased) pre trained models. <b>
+Details on the [SimSCE](https://arxiv.org/pdf/2104.08821.pdf) framework research.<b/>
+Details on [SentEval](https://research.fb.com/downloads/senteval/) the evaluation code for sentence embeddings. <b/>
+Introduction to the World BERT [BERT](https://www.analyticsvidhya.com/blog/2019/09/demystifying-bert-groundbreaking-nlp-framework/). <b/>
+[Bert_uncased](https://huggingface.co/bert-base-uncased) pre trained models. <b/>
