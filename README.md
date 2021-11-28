@@ -18,7 +18,7 @@ A transformer-based ML technique for (NLP) pre-training, introduced in 2019 by G
 in NLP experiments.
 
 The **Transformer** architecture that selectively concentrates on a discrete aspect of information, whether considered <br/>
-subjective or objective, encourages the option of training parallelization which led to the development of a pretrained <br/>
+subjective or objective, encourages the option of training parallelization which led to the development of pretrained <br/>
 systems like BERT and GPT. 
 
 Created on a **pre-trained** on a large corpus of unlabelled text including the entire Wikipedia (that’s 2,500 million words) <br/>
@@ -88,12 +88,12 @@ pip install transformers
 
 Faiss
 
-An efficient similarity search library. The faiss is not a necessary dependency for simcse package, if error pop-up, 
-follow the trubleshooting instractions.
+An efficient similarity search library. 
+The faiss is not a necessary dependency for simcse package, if error pop-up, follow the troubleshooting instructions.
 
 ## Script invocation
 
-python3 main.py --sentences path/to/sentences.json
+python3 main.py --sentences <path/to/sentences.json>
 
 ## Background of the Pretrained model  
 
@@ -115,104 +115,103 @@ Meaning, the text has been lowercased before WordPiece tokenization.<br/>
 
 ### Evaluation scaling
 
-Similarity score is continuous number from 0 (lowest-not related at all), to 1 (highest-equal sentences). <br/>
-since its calculated score, once a while it little bit higher the 1 or lower. The scores are rounded to 4 digits after the dot.<br/>
-The default value, as set by SimSCE is 0.6. In order to evaluate the similarities and determine on the thresholds value, <br/>
-the generated scores and texts reviewed. As a whole, around 80% most of the generated sentences were accurate, <br/>
-but there are some exceptions. The following list defines some of characteristics, that tested specifically, <br/>
-individually and together (hard to validate complexity characteristics):
+Similarity score is a continuous number from 0 (lowest-not related at all), to 1 (highest-equal sentences). <br/>
+since its calculated score, once a while it is a little bit higher or lower 1. The scores are rounded to 4 digits after the dot.<br/>
+The default value, set by SimSCE to 0.6. Upon SimSCE threshold is required, which divides the results to Pass (1) and Fail (0).<br/>
+As a whole, around 80% most of the generated sentences are accurate, but there are exceptions. <br/>
+The following list defines characteristics, that review specifically, as individually and together <br/>
+(hard to validate complexity characteristics):<br/>
 
 - Diverse meaning for a word in different location in the sentence,
 - Tenses,
 - Plural nouns,
 - Disposal words,
-- Spelling mistakes, 
+- Spelling mistakes,
 - One word changes as in the subject or adjective, predict on the syntax level,
-- Negativity - Positively  sentences,
-- Prepositions like: till. until, on, im etc,
+- Negativity - Positive sentences
+- Prepositions like: till. until, on, in etc,
 - Punctuations like: !, ?, "," etc,
 - Street lingo (jargon),
 - A definite uses like: 'A' vs 'The'
 - Upper \ lower case,
 - Phrases, like: give you up vs give you pencil,
-- Mistakes \ errors in the similarity score .
+- Mistakes \ errors in the similarity score.
 
 ## Review results
 
-First of it's important to mention that multiple sentence can be retrieved, if the THRESHOLDS boundary is met. And if the embedded input file 
+First, it is important to mention that multiple sentences can be generated, if the threshold boundary is met. And if the embedded input file
 contains the searched sentence more than once, it will be retrieved as the number of times it appears.
-Important to emphasize that when a sentence generates a similar sentence, it will get the same score when it is produced in reverse order.
-Not surprisingly, the result shows no distinguish between sentences that contain words with uppercase / lowercase, since all texts lowercase, before WordPiece tokenization.
+Let's emphasize that when a sentence generates a similar sentence, it will get the same score when it is produced in reverse order.
+Not surprisingly, there is no distinction between sentences that contain words with uppercase / lowercase, since the model training proces:
+all texts lowercase, before WordPiece tokenization.
 
-Following to the list above, here some examples:
+The quality of the result can be emphasized in the following example:
 
-On Tenses aspect: "The boy jump to the pool" vs "The boy jumps to the pool" scored 0.9735, but “He is gone” vs ”he left”, drops the score, mistakenly,to 0.7627.
-while “She was hungry” vs She is hungry" scored 0.8814And it decrease slightly when compering to “She has been hungry“ (0.8674) but surprisingly increases for the 
-following mistake: “She have been hungry” (0.9079).
-When changing gender to "he" - “He is hungry”, the score drops to 0.7932O.
-Continue to on plural similarity check, and "He is sleeping" vs "We are sleeping" dropped to 0.6564. 
+On Tenses aspect: "The boy** jump** to the pool" vs "The boy **jumps** to the pool" scored 0.9735,
+but “He is** gone**” vs ”he **left**”, drops the score, mistakenly, to 0.7627. While “She **was** hungry” vs She **is** hungry"
+scored 0.8814, and it decreases slightly, when comparing to “She **has been** hungry“ (0.8674), but surprisingly increases for the
+following mistake: “**She have** been hungry” (0.9079).
+When changing gender, “**He** is hungry”, the score drops to 0.7932O.
+Continue on the plural similarity check, and "**He** is sleeping" vs "**We** are sleeping" dropped to 0.6564.
 Seems that plural\single issue as the gender aspect is significant.
 
-When it comes to spelling mistakes, it seems no gambles are taken: it constantly drops the score, like in:"This cource is good" vs "This course is good" scored 0.4905. but  
-on a missing meaning mistake:"We will stay tii you go" vs "We will stay only for you", scored is up to 0.7471, Which is very close score to an accurate similarity, as:
-"We will stay only for you" vs "We will stay until you come" scored on 0.8.
-Maybe unclear word 'weight' less, and a similarity sentence can be reached.
+When it comes to spelling mistakes, no guesses are taken: it constantly drops the score.
+like in: "This **cource** is good" vs "This **course** is good" scored 0.4905. But on a meaning missing even a mistake can increases:
+"We will stay **tii** you go" vs "We will stay only for you", scored 0.7471, Which is very close score to an accurate similarity, as:
+"We will stay only for you" vs "We will stay until you come" scored on **0.8**.
+Maybe unclear words 'weights' less, and a similarity sentence can be reached.
 
-On the negativity aspect “The clerk is not nice” scored less than 0.4 similarity to the positive “The clerk is nice”, and rightly to “The clerk is rude” as 0.8976. 
-But surprisingly (and wrongly) vs to “The nice clerk left” scored with 0.5621. 
+On the negativity aspect “The clerk **is not nice**” scored less than 0.6 similarity to the positive “The clerk **is nice**”,
+and rightly to “The clerk **is rude**” as 0.8976. But, surprisingly (and wrongly) vs “The **nice clerk left**” scored 0.5621.
 
-A strongly, influenced detected for punctuations ;
-Too low score for "A man is playing a guitar" vs "Who is playing the guitar?" (0.6753).
-"Never!! gonna give you up?" vs "Never gonna give you up" (0.6989).
+It is clear that punctuation has a strong influence: Too low score for: "A man is playing a guitar" vs "Who is playing the guitar?"
+"Never**!!** gonna give you up?" vs "Never gonna give you up" (0.6989)
 
-And when it comes to Street lingo (jargon), like “gonna” and “wonna";
-"I am going to stop talking with you” vs “I gonna stop talking with you”,
-the accurate score is 0.9470. 
+And if we are on the Street lingo (jargon), like “gonna” and “wonna";
+"I am going to stop talking with you” vs “I gonna stop talking with you”, an accurate score give -  0.9470.
 
-A definite uses like: 'A' vs 'The’, seems to have minor influence:
-“The cellulars is not stolen”, vs “And, a cellulars is not stolen” (0.9708), 
-which reveals that unrelated words (meaning aspects),does not have any effect. 
+A definite use like: 'A' vs 'The’, seems to have minor influence:
+“The cellulars is not stolen”, vs “And, a cellulars is not stolen” (0.9708), which reveals that unrelated words (meaning aspects),
+does not have any effect. Here an **And** is the sentence prefix, but when the unfinished sentence, might have significance:
+ “a cellulars is not stolen, **back to**” vs “The cellulars is not stolen" (0.9010).
 
-In other example, where the unfinished sentence might have some significance, the score dropped to 0.9010: 
- “a cellulars is not stolen, back to”, ivs “The cellulars is not stolen" (0.9010). 
-
-When it comes to adjectives in the sentence, 
-various scorers attached:“The ugly cellular is stolen” vs “The pretty cellular is stolen” (0.8650).
-Founded to be slightly Below , for a adjective omission: 
-“The pretty cellular is stolen” vs “The cellulars is stolen” (0.8791),and surprisingly, 
-on a mistake: ”The pretty cellular is stolen” vs “The pritty cellular is stolen” increases to 0.8832.
-On the sentence's subject it clearer: “The cat is running” vs “The dog is running” scored very low, limit of 0.4155 And on the predict (in grammar): 
-“the dog is hungry” vs “The dog is running” scored little bit higher, but not much (0.5790).
+On adjectives various scorers attached: “The ugly cellular is stolen” vs “The pretty cellular is stolen” (0.8650).
+Founded to be slightly Below, for a adjective omission: “The pretty cellular is stolen” vs “The cellulars is stolen” (0.8791),
+and surprisingly, on a mistake: ”The pretty cellular is stolen” vs “The **pritty** cellular is stolen” increases to 0.8832.
+On the sentence's subject it clearer: “The **cat** is running” vs “The** dog** is running” scored very low, limit of 0.4155,
+and on the predict (in grammar): “the dog is hungry” vs “The dog is running” scored little bit higher, but not much (0.5790).
  
 On prepositioning, it depends, if it's a phrase:
-"I will give you up” vs “I will give you a pencil” scored under 0.4, And on 
-till\until wrongly similarity score is too high - 0.9012, thus it's  opposite meaning.
-"We will go until you come" vs "We will stay until you come".
+"I will **give you up**” vs “I will **give you a** pencil” scored under 0.6, And on till\until wrongly similarity score
+is too high - 0.9012, thus it's opposite meaning. "We will **go until** you come" vs "We will **stay until** you come".
 
-On the diverse meaning for a word in different location in the sentence.
-The output file contain several examples:
-“The drill is missing” vs “I have been to the dentist many times, so I know the drill” , rightly, was not founded, matched. 
-And scored low grade: “She had a boyfriend with a wooden leg but broke it off” vs “she broke the partnership”(0.5384)
-“A fight broke out between the stepmother and the man before her death” (0.4313)
-where as “she broke the partnership” vs “she broke the table” scored as 0.5220, which can have been considered as similar meaning, but then relatively to “She left” that scored 0.5194 (which should'nt be found matches, at all).
-"life is pointless” vs “Without geometry life is pointless” (wrongly, 0.6498).
-Where interest in full meaning was not achieved, when below 0.4 to “The subject aroused interest” vs “I used to be a banker, but comparing to "I lost interest” or to “As an inverter, I lost interest”, it should have been higher.
+Challenging is a diverse meaning for a word in different locations in the sentence:
+“The **drill** is missing” vs “I have been to the dentist many times, so I know the **drill**”, rightly, match not found.
+And, scored low on similarity check: “She had a boyfriend with a wooden leg but **broke it off**” vs “she **broke the partnership**” (0.5384),
+“She had a boyfriend with a wooden leg but **broke it off**” vs “A fight broke out between the stepmother and the man before her death” (0.4313).
+Where as “she **broke the partnership**” vs “she “She had a boyfriend with a wooden leg but **broke it off**” vs” scored as 0.5220,
+which can have been considered as similar meaning, if the following relatively to “She left” wouldn't receive the 0.5194 score
+(which should not be found matches, at all).
+"life is pointless” vs “Without geometry life is pointless” (wrongly, 0.6498). Where **interest** meaning was not achieved,
+on a below 0.6 to “The subject **aroused interest**” vs “I used to be a banker, but comparing to "I **lost interest**” or to
+“As an inverter, I lost interest”, it should have been higher.
 
 ### Conclusion
 
-There is still a long way to go with fine-tuning toAchieve higher accuracy. There are sentences that have a <br/>
-question mark about them. We are inspired to handle a large number of sentences on the one hand, and on the other hand maintain a <br/>
-high level of accuracy and reliability. That is why the value of the thresholds is important. Full confidence is to set the thresholds <br/>
-to 0.8000. A minor number of sentences will be generated incorrectly. But, after reviewing the data set, I decided to go lower,<br/>
-setting the threshold to 7.620. This may result in more accidentally created sentences, but mass generated sentences required, also.<br/>
+There is, still, a long way to go on fine-tuning in order to achieve higher accuracy.
+There are, still, question marks on some generated sentences. The value of the thresholds is important, because <br/>
+We are inspired to handle a large number of sentences on the one hand, and on the other hand maintain a high level of accuracy and reliability. <br/>
+Thresholds could have been set to 0.8000, with a minor number of sentences generated incorrectly.
+But, after careful thoughts, as the best balance, I decided to go set it lower, to 7.620. <br/>
+This may result in more accidentally generated sentences, but archives mass generated sentences.<br/>
 
 ## Troubleshoot
 
 1. On RuntimeError: Can't call numpy() on Tensor that requires grad. Use tensor.detach().numpy() instead.
    Resolved by a compromise solution, replacing the library code as followed:
     ```bibtex
-   On local_path..->\anaconda3\envs\project_name\Lib\site-packages\torch\tensor.py 
-   replace the row, as following: 
+   On local_path..->\anaconda3\envs\project_name\Lib\site-packages\torch\tensor.py
+   replace the row, as following:
 
    def __array__(self, dtype=None):
       if dtype is None:
@@ -220,23 +219,23 @@ setting the threshold to 7.620. This may result in more accidentally created sen
       else:
         return self.numpy().astype(dtype, copy=False)
     ```
-    
-2. On ModuleNotFoundError: No module named 'simcse', install: 
+   
+2. On ModuleNotFoundError: No module named 'simcse', install:
 
    ```bash
    pip install SimCSE
-   ``` 
+   ```
 
-3. On RuntimeError: Fail to import faiss. If you want to use faiss, install faiss through PyPI. 
+3. On RuntimeError: Fail to import faiss. If you want to use faiss, install faiss through PyPI.
    Now the program continues with brute force search.
    Be aware: The search results reliability decreases on brute force search
    
    
-   WARNING: found out that faiss did not well support Nvidia AMPERE GPUs (3090 and A100). 
+   WARNING: found out that faiss did not well support Nvidia AMPERE GPUs (3090 and A100).
             In that case, you should change to other GPUs or install the CPU version of faiss package.
 
    For CPU-version faiss, run
-  
+ 
    ```bash
    pip install faiss-cpu
    ```
@@ -252,7 +251,7 @@ setting the threshold to 7.620. This may result in more accidentally created sen
 Details on the [SimSCE](https://arxiv.org/pdf/2104.08821.pdf) framework research.<br/>
 Details on [SentEval](https://research.fb.com/downloads/senteval/) the evaluation code for sentence embeddings. <br/>
 Introduction to the World BERT [BERT](https://www.analyticsvidhya.com/blog/2019/09/demystifying-bert-groundbreaking-nlp-framework/). <br/>
-[Bert_uncased](https://huggingface.co/bert-base-uncased) pre trained models. <br/>
+[Bert_uncased](https://huggingface.co/bert-base-uncased) pre-trained models. <br/>
 
 ## Citation
 
@@ -261,6 +260,5 @@ Credit for the SimCSE project:
 ```bibtex
 @inproceedings{gao2021simcse, title={{SimCSE}: Simple Contrastive Learning of Sentence Embeddings}, <br/>
 author={Gao, Tianyu and Yao, Xingcheng and Chen, Danqi}, booktitle={Empirical Methods in Natural Language <br/>
-Processing (EMNLP)}, year={2021}<br/>
-}
+Processing (EMNLP)}, year={2021}} <br/>
 ```
