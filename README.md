@@ -139,69 +139,69 @@ The following list defines characteristics, that review specifically, as individ
 
 ## Review results
 
-First, it is important to mention that multiple sentences can be generated, if the threshold boundary is met. And if the embedded input file
-contains the searched sentence more than once, it will be retrieved as the number of times it appears.
-Let's emphasize that when a sentence generates a similar sentence, it will get the same score when it is produced in reverse order.
-Not surprisingly, there is no distinction between sentences that contain words with uppercase / lowercase, since the model training proces:
-all texts lowercase, before WordPiece tokenization.
+First, it is important to mention that multiple sentences can be generated, if the threshold boundary is met. And if the embedded input file<br/>
+contains the searched sentence more than once, it will be retrieved as the number of times it appears.<br/>
+Let's emphasize that when a sentence generates a similar sentence, it will get the same score when it is produced in reverse order.<br/>
+Not surprisingly, there is no distinction between sentences that contain words with uppercase / lowercase, since the model training proces:<br/>
+all texts lowercase, before WordPiece tokenization.<br/>
 
-The quality of the result can be emphasized in the following example:
+The quality of the result can be emphasized in the following example:<br/>
 
-On Tenses aspect: "The boy** jump** to the pool" vs "The boy **jumps** to the pool" scored 0.9735,
-but “He is** gone**” vs ”he **left**”, drops the score, mistakenly, to 0.7627. While “She **was** hungry” vs She **is** hungry"
-scored 0.8814, and it decreases slightly, when comparing to “She **has been** hungry“ (0.8674), but surprisingly increases for the
-following mistake: “**She have** been hungry” (0.9079).
-When changing gender, “**He** is hungry”, the score drops to 0.7932O.
-Continue on the plural similarity check, and "**He** is sleeping" vs "**We** are sleeping" dropped to 0.6564.
-Seems that plural\single issue as the gender aspect is significant.
+On Tenses aspect: "The boy** jump** to the pool" vs "The boy **jumps** to the pool" scored 0.9735,<br/>
+but “He is** gone**” vs ”he **left**”, drops the score, mistakenly, to 0.7627. While “She **was** hungry” vs She **is** hungry"<br/>
+scored 0.8814, and it decreases slightly, when comparing to “She **has been** hungry“ (0.8674), but surprisingly increases for the<br/>
+following mistake: “**She have** been hungry” (0.9079).<br/>
+When changing gender, “**He** is hungry”, the score drops to 0.7932O.<br/>
+Continue on the plural similarity check, and "**He** is sleeping" vs "**We** are sleeping" dropped to 0.6564.<br/>
+Seems that plural\single issue as the gender aspect is significant.<br/>
 
-When it comes to spelling mistakes, no guesses are taken: it constantly drops the score.
-like in: "This **cource** is good" vs "This **course** is good" scored 0.4905. But on a meaning missing even a mistake can increases:
-"We will stay **tii** you go" vs "We will stay only for you", scored 0.7471, Which is very close score to an accurate similarity, as:
-"We will stay only for you" vs "We will stay until you come" scored on **0.8**.
-Maybe unclear words 'weights' less, and a similarity sentence can be reached.
+When it comes to spelling mistakes, no guesses are taken: it constantly drops the score.<br/>
+like in: "This **cource** is good" vs "This **course** is good" scored 0.4905. But on a meaning missing even a mistake can increases:<br/>
+"We will stay **tii** you go" vs "We will stay only for you", scored 0.7471, Which is very close score to an accurate similarity, as:<br/>
+"We will stay only for you" vs "We will stay until you come" scored on **0.8**.<br/>
+Maybe unclear words 'weights' less, and a similarity sentence can be reached.<br/>
 
-On the negativity aspect “The clerk **is not nice**” scored less than 0.6 similarity to the positive “The clerk **is nice**”,
-and rightly to “The clerk **is rude**” as 0.8976. But, surprisingly (and wrongly) vs “The **nice clerk left**” scored 0.5621.
+On the negativity aspect “The clerk **is not nice**” scored less than 0.6 similarity to the positive “The clerk **is nice**”,<br/>
+and rightly to “The clerk **is rude**” as 0.8976. But, surprisingly (and wrongly) vs “The **nice clerk left**” scored 0.5621<br/>
 
-It is clear that punctuation has a strong influence: Too low score for: "A man is playing a guitar" vs "Who is playing the guitar?"
-"Never**!!** gonna give you up?" vs "Never gonna give you up" (0.6989)
+It is clear that punctuation has a strong influence: Too low score for: "A man is playing a guitar" vs "Who is playing the guitar?"<br/>
+"Never**!!** gonna give you up?" vs "Never gonna give you up" (0.6989)<br/>
 
-And if we are on the Street lingo (jargon), like “gonna” and “wonna";
-"I am going to stop talking with you” vs “I gonna stop talking with you”, an accurate score give -  0.9470.
+And if we are on the Street lingo (jargon), like “gonna” and “wonna";<br/>
+"I am going to stop talking with you” vs “I gonna stop talking with you”, an accurate score give -  0.9470.<br/>
 
-A definite use like: 'A' vs 'The’, seems to have minor influence:
-“The cellulars is not stolen”, vs “And, a cellulars is not stolen” (0.9708), which reveals that unrelated words (meaning aspects),
-does not have any effect. Here an **And** is the sentence prefix, but when the unfinished sentence, might have significance:
- “a cellulars is not stolen, **back to**” vs “The cellulars is not stolen" (0.9010).
+A definite use like: 'A' vs 'The’, seems to have minor influence:<br/>
+“The cellulars is not stolen”, vs “And, a cellulars is not stolen” (0.9708), which reveals that unrelated words (meaning aspects),<br/>
+does not have any effect. Here an **And** is the sentence prefix, but when the unfinished sentence, might have significance:<br/>
+ “a cellulars is not stolen, **back to**” vs “The cellulars is not stolen" (0.9010).<br/>
 
-On adjectives various scorers attached: “The ugly cellular is stolen” vs “The pretty cellular is stolen” (0.8650).
-Founded to be slightly Below, for a adjective omission: “The pretty cellular is stolen” vs “The cellulars is stolen” (0.8791),
-and surprisingly, on a mistake: ”The pretty cellular is stolen” vs “The **pritty** cellular is stolen” increases to 0.8832.
-On the sentence's subject it clearer: “The **cat** is running” vs “The** dog** is running” scored very low, limit of 0.4155,
-and on the predict (in grammar): “the dog is hungry” vs “The dog is running” scored little bit higher, but not much (0.5790).
+On adjectives various scorers attached: “The ugly cellular is stolen” vs “The pretty cellular is stolen” (0.8650).<br/>
+Founded to be slightly Below, for a adjective omission: “The pretty cellular is stolen” vs “The cellulars is stolen” (0.8791),<br/>
+and surprisingly, on a mistake: ”The pretty cellular is stolen” vs “The **pritty** cellular is stolen” increases to 0.8832.<br/>
+On the sentence's subject it clearer: “The **cat** is running” vs “The** dog** is running” scored very low, limit of 0.4155,<br/>
+and on the predict (in grammar): “the dog is hungry” vs “The dog is running” scored little bit higher, but not much (0.5790).<br/>
  
-On prepositioning, it depends, if it's a phrase:
-"I will **give you up**” vs “I will **give you a** pencil” scored under 0.6, And on till\until wrongly similarity score
-is too high - 0.9012, thus it's opposite meaning. "We will **go until** you come" vs "We will **stay until** you come".
+On prepositioning, it depends, if it's a phrase:<br/>
+"I will **give you up**” vs “I will **give you a** pencil” scored under 0.6, And on till\until wrongly similarity score<br/>
+is too high - 0.9012, thus it's opposite meaning. "We will **go until** you come" vs "We will **stay until** you come".<br/>
 
-Challenging is a diverse meaning for a word in different locations in the sentence:
-“The **drill** is missing” vs “I have been to the dentist many times, so I know the **drill**”, rightly, match not found.
-And, scored low on similarity check: “She had a boyfriend with a wooden leg but **broke it off**” vs “she **broke the partnership**” (0.5384),
-“She had a boyfriend with a wooden leg but **broke it off**” vs “A fight broke out between the stepmother and the man before her death” (0.4313).
-Where as “she **broke the partnership**” vs “she “She had a boyfriend with a wooden leg but **broke it off**” vs” scored as 0.5220,
-which can have been considered as similar meaning, if the following relatively to “She left” wouldn't receive the 0.5194 score
-(which should not be found matches, at all).
-"life is pointless” vs “Without geometry life is pointless” (wrongly, 0.6498). Where **interest** meaning was not achieved,
-on a below 0.6 to “The subject **aroused interest**” vs “I used to be a banker, but comparing to "I **lost interest**” or to
-“As an inverter, I lost interest”, it should have been higher.
+Challenging is a diverse meaning for a word in different locations in the sentence:<br/>
+“The **drill** is missing” vs “I have been to the dentist many times, so I know the **drill**”, rightly, match not found.<br/>
+And, scored low on similarity check: “She had a boyfriend with a wooden leg but **broke it off**” vs “she **broke the partnership**” (0.5384),<br/>
+“She had a boyfriend with a wooden leg but **broke it off**” vs “A fight broke out between the stepmother and the man before her death” (0.4313).<br/>
+Where as “she **broke the partnership**” vs “she “She had a boyfriend with a wooden leg but **broke it off**” vs” scored as 0.5220,<br/>
+which can have been considered as similar meaning, if the following relatively to “She left” wouldn't receive the 0.5194 score<br/>
+(which should not be found matches, at all).<br/>
+"life is pointless” vs “Without geometry life is pointless” (wrongly, 0.6498). Where **interest** meaning was not achieved,<br/>
+on a below 0.6 to “The subject **aroused interest**” vs “I used to be a banker, but comparing to "I **lost interest**” or to<br/>
+“As an inverter, I lost interest”, it should have been higher.<br/>
 
 ### Conclusion
 
-There is, still, a long way to go on fine-tuning in order to achieve higher accuracy.
+There is, still, a long way to go on fine-tuning in order to achieve higher accuracy.<br/>
 There are, still, question marks on some generated sentences. The value of the thresholds is important, because <br/>
 We are inspired to handle a large number of sentences on the one hand, and on the other hand maintain a high level of accuracy and reliability. <br/>
-Thresholds could have been set to 0.8000, with a minor number of sentences generated incorrectly.
+Thresholds could have been set to 0.8000, with a minor number of sentences generated incorrectly.<br/>
 But, after careful thoughts, as the best balance, I decided to go set it lower, to 7.620. <br/>
 This may result in more accidentally generated sentences, but archives mass generated sentences.<br/>
 
