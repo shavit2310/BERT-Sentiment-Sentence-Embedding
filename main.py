@@ -20,11 +20,12 @@ model = SimCSE("princeton-nlp/sup-simcse-bert-base-uncased")
 INPUT_SENTENCES_FILE = 'full_sentences.json'  # Optional files are available in data directory
 SENTENCES_INPUT_FILE_PATH = 'data\\full_sentences.json'
 
-# For specific similarity check of two sentences
+# For specific similarity check from the user
 OUTPUT_SENTENCES_FILE = 'Sentences_similarity_log.csv'
 SENTENCES_OUTPUT_FILE_PATH = 'output\\Sentences_similarity_log.csv'
 HEADER_ALL = '\nSentence similarity log'
 
+# For specific similarity check of two sentences
 OUTPUT_SPECIFIC_SIMILARITY_FILE = 'Specific_sentences_similarity_grade.csv'
 SPECIFIC_SIMILARITY_SENTENCES_OUTPUT_FILE_PATH = 'output\\Specific_sentences_similarity_grade.csv'
 HEADER_SPECIFIC = '\nCheck specific sentences similarity score'
@@ -79,6 +80,7 @@ def input_source(argv):
 
 def load_sentences(input_sentences):
     # Initiate a list with the input sentences
+    
     sentences = []
     with open(input_sentences) as file:
         for line in json.load(file):
@@ -138,11 +140,12 @@ def evaluate_sentences_similarities():
 
     # Get the embeddings
     embeddings = embedding_sentences(inputs)
-
+    
+    # Use directky the cosin func that compare the encoded vactors
     for i in range(1, len(embeddings)):
         # Cosine similarities are in [-1, 1]. Higher means more similar
+        
         most_similar = 1 - cosine(embeddings[i], embeddings[i - 1])
-
         final_list.append(texts[i] + " : " + texts[i - 1] + ' scored: ' + str(most_similar))
 
     # Print and save to file the specific similarity check
@@ -153,7 +156,8 @@ def evaluate_sentences_similarities():
 
 def find_similarity(user_preference):
     # search a sentence among the encoded group of sentences
-
+    
+    # 'search' methd contains the encoded phase and the cosin phase 
     result = model.search(user_preference)
 
     return result
