@@ -13,7 +13,7 @@ on the BERTbase model and evaluated with SentEval of FaceBook research (STS).<br
 
 ## Main concept
 
-BERT
+BERT<br/>
 A transformer-based ML technique for (NLP) pre-training, introduced in 2019 by Google, and has become a ubiquitous baseline <br/>
 in NLP experiments.
 
@@ -21,7 +21,7 @@ The **Transformer** architecture that selectively concentrates on a discrete asp
 subjective or objective, encourages the option of training parallelization which led to the development of a pretrained <br/>
 systems like BERT and GPT. 
 
-Created on a **pre-trained** on a large corpus of unlabelled text including the entire Wikipedia (that’s 2,500 million words!) <br/>
+Created on a **pre-trained** on a large corpus of unlabelled text including the entire Wikipedia (that’s 2,500 million words) <br/>
 and Book Corpus (800 million words). 
 
 Includes a **Bidirectional** in which learns information from both, left and right, sides of a token’s context during the <br/>
@@ -31,7 +31,7 @@ This characteristic and the ELMO solution for same words having different meanin
 were the foundations for BERT implementation under the concept that Transfer Learning in NLP = Pre-Training first <br/>
 and Fine-Tuning afterwards. 
 
-BERT input embedding combined of 3 embeddings:
+BERT input embedding combined of 3 embeddings:<br/>
 **Position Embeddings**: Uses positional embeddings to express the position of words in a sentence.<br/>
 **Segment Embeddings**:  Can also take sentence pairs as inputs for tasks (Question-Answering). That’s why it learns a unique <br/>
                          embedding for the first and the second sentences to help the model distinguish between them.<br/>
@@ -71,7 +71,7 @@ pip install torch==1.7.1
 ```
 Scipy 
 
-An open-source Python library, which claims to provide “industrial-strength natural language processing,”. It is the <br/>
+An open-source Python library, which claims to provide “industrial-strength natural language processing”. It is the <br/>
 fastest-running solution. Contain pre-built models: Named entity recognition, part-of-speech (POS) tagging, and <br/>
 classification. Has optimized and added functions that are frequently used in NumPy and Data Science.<br/>
 
@@ -86,7 +86,7 @@ Architecture implementation that aims to solve sequence-to-sequence tasks while 
 pip install transformers
 ```
 
-faiss
+Faiss
 
 An efficient similarity search library. The faiss is not a necessary dependency for simcse package, if error pop-up, 
 follow the trubleshooting instractions.
@@ -100,7 +100,6 @@ python3 main.py --sentences path/to/sentences.json
 ### Evaluation
 
 FaceBook research (STS) evaluates sentence embeddings on semantic textual similarity tasks and downstream transfer tasks.
-
 The FaceBook encoder based on a bi-directional LSTM architecture with max pooling, trained on the Stanford Natural <br/>
 Language Inference (SNLI)dataset delivered better encoder results than the known popular approaches like SkipThought or FastSent.
 
@@ -108,10 +107,9 @@ Language Inference (SNLI)dataset delivered better encoder results than the known
 
 **Data**
 
-For supervised SimCSE, 1 million sentences from NLI datasets were sampled. 
-
-The **sup-simcse-bert-base-uncased** model bases on the BERT uncased pre-trained model.
-Meaning, the text has been lowercased before WordPiece tokenization.
+For supervised SimCSE, 1 million sentences from NLI datasets were sampled. <br/>
+The **sup-simcse-bert-base-uncased** model bases on the BERT uncased pre-trained model.<br/>
+Meaning, the text has been lowercased before WordPiece tokenization.<br/>
 
 ## Analyze results
 
