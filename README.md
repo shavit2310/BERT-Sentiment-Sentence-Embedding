@@ -21,7 +21,7 @@ The **Transformer** architecture that selectively concentrates on a discrete asp
 subjective or objective, encourages the option of training parallelization which led to the development of a pretrained <br/>
 systems like BERT and GPT. 
 
-Created on a **pre-trained** on a large corpus of unlabelled text including the entire Wikipedia(that’s 2,500 million words!) <br/>
+Created on a **pre-trained** on a large corpus of unlabelled text including the entire Wikipedia (that’s 2,500 million words!) <br/>
 and Book Corpus (800 million words). 
 
 Includes a **Bidirectional** in which learns information from both, left and right, sides of a token’s context during the <br/>
@@ -35,7 +35,7 @@ BERT input embedding combined of 3 embeddings:
 **Position Embeddings**: Uses positional embeddings to express the position of words in a sentence.<br/>
 **Segment Embeddings**:  Can also take sentence pairs as inputs for tasks (Question-Answering). That’s why it learns a unique <br/>
                          embedding for the first and the second sentences to help the model distinguish between them.<br/>
-**Token Embeddings**:    The embeddings learned for the specific token from the WordPiece token vocabulary  Tokenization is <br/>
+**Token Embeddings**:    The embeddings learned for the specific token from the WordPiece token vocabulary Tokenization is <br/>
                          the process of encoding a string of text into transformer-readable token ID integers. <br/>
                          From human-readable text to transformer-readable token IDs.<br/>
  
@@ -71,9 +71,9 @@ pip install torch==1.7.1
 ```
 Scipy 
 
-An open-source Python library, which claims to provide “industrial-strength natural language processing,”.It is the <br/>
-fastest-running solution. Contain pre-built models: Named entity recognition,part-of-speech (POS) tagging, and <br/>
-classification.Has optimized and added functions that are frequently used in NumPy and Data Science.<br/>
+An open-source Python library, which claims to provide “industrial-strength natural language processing,”. It is the <br/>
+fastest-running solution. Contain pre-built models: Named entity recognition, part-of-speech (POS) tagging, and <br/>
+classification. Has optimized and added functions that are frequently used in NumPy and Data Science.<br/>
 
 ```bash
 pip install scipy
@@ -88,7 +88,7 @@ pip install transformers
 
 faiss
 
-An efficient similarity search library.  The faiss is not a necessary dependency for simcse package, if error pop-up, 
+An efficient similarity search library. The faiss is not a necessary dependency for simcse package, if error pop-up, 
 follow the trubleshooting instractions.
 
 ## Script invocation
