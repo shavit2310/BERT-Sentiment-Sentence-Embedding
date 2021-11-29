@@ -141,7 +141,7 @@ def evaluate_sentences_similarities():
     # Get the embeddings
     embeddings = embedding_sentences(inputs)
     
-    # Use directky the cosin func that compare the encoded vactors
+    # Use directly the cosin func that compare the encoded vectors
     for i in range(1, len(embeddings)):
         # Cosine similarities are in [-1, 1]. Higher means more similar
         
