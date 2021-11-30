@@ -122,7 +122,7 @@ Meaning, the text has been lowercased before WordPiece tokenization.<br/>
 
 Similarity score is a continuous number from 0 (lowest-not related at all), to 1 (highest-equal sentences). <br/>
 since its calculated score, once a while it is a little bit higher or lower 1. <br/>
-As a whole, most of generated sentences are around around 80% accurate, but there are exceptions. <br/>
+As a whole, most of the generated sentences are around around 80% accurate, but there are exceptions. <br/>
 The following list defines characteristics, that review specifically, as individually and together <br/>
 (hard to validate complexity characteristics):<br/>
 
@@ -202,11 +202,11 @@ on a below 0.6 to “The subject **aroused interest**” vs “I used to be a ba
 
 ### Conclusion
 
-A better fine-tuning is required, in order to achieve higher accuracy. The value of the thresholds is important, because We are <br/>
-inspired to handle a large number of sentences on the one hand, and on the other hand maintain a high level of accuracy and reliability. <br/>
-SimSCE set the thresholds to 0.6. A set of 0.8000, brings only minor number of incorrectly generated sentences.<br/>
-But as a balance between handle mass sentences and rate of mistakes, I set the thresholds to 0.7620. <br/>
-So, if a similarity score between the input sentence and the generated one is 0.7620 or higher it rated as 1 (Pass), otherwise it rated as 0 (Fail). <br/>
+A better fine-tuning is required, in order to achieve higher accuracy. The value of the thresholds is important, because We are<br/>
+inspired to handle a large number of sentences on the one hand, and on the other hand maintain a high level of accuracy and reliability.<br/>
+SimSCE set the thresholds to 0.6. Set the thresholds to 0.8000, will bring a minor number of incorrectly generated sentences.<br/>
+But as a balance between handling mass sentences and rate of mistakes, I set the thresholds to 0.7620.<br/>
+So, if a similarity score between the input sentence and the generated one is 0.7620 or higher it is rated as 1 (Pass), otherwise it is rated as 0 (Fail). <br/>
 
 ## Troubleshoot
 
