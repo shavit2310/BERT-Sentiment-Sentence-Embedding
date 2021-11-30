@@ -19,7 +19,7 @@ SENTENCES_INPUT_FILE_PATH = 'data\\full_sentences.json'
 # Output for each check done
 OUTPUT_SENTENCES_FILE = 'Sentences_similarity_log.csv'
 SENTENCES_OUTPUT_FILE_PATH = 'output\\Sentences_similarity_log.csv'
-HEADER_ALL = '\nSentence similarity log'
+HEADER = '\nSentence similarity log'
 
 # Similarity evaluation score
 THRESHOLDS = 0.7620
@@ -224,7 +224,7 @@ def review_outputs(final_texts_by_score):
     input_sentences = os.path.join(main_dir, SENTENCES_OUTPUT_FILE_PATH)
 
     archive = open(input_sentences, "a")
-    archive.write(input_sentences)
+    archive.write(HEADER)
     for match in final_texts_by_score:
         archive.write('\n')
         archive.write(''.join(match))
