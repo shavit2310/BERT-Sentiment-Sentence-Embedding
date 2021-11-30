@@ -100,6 +100,9 @@ The faiss is not a necessary dependency for simcse package, if error pop-up, fol
 
 python3 main.py --sentences <path/to/sentences.json>
 
+The user can run the script with or without a json file. A default file will be loaded, if no file supplies, <br/>
+and a warning message will pop up.
+
 ## Background of the Pretrained model  
 
 ### Evaluation
@@ -205,7 +208,8 @@ A better fine-tuning is required, in order to achieve higher accuracy. The value
 inspired to handle a large number of sentences on the one hand, and on the other hand maintain a high level of accuracy and reliability.<br/>
 SimSCE set the thresholds to 0.6. For thresholds of 0.8000, we will receive a small number of incorrectly generated sentences.<br/>
 But as a balance between handling mass sentences and rate of mistakes, I set the thresholds to 0.7620.<br/>
-So, if a similarity score between the input sentence and the generated one is 0.7620 or higher it is rated as 1 (Pass), otherwise it is rated as 0 (Fail). <br/>
+So, if a similarity score between the input sentence and the generated one is 0.7620 or higher it is rated as 1 (Pass), <br/>
+otherwise it is rated as 0 (Fail). 
 
 ## Troubleshoot
 
