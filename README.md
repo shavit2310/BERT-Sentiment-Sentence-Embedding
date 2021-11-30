@@ -104,9 +104,9 @@ python3 main.py --sentences <path/to/sentences.json>
 
 ### Evaluation
 
-FaceBook research (STS) evaluates sentence embeddings on semantic textual similarity tasks and downstream transfer tasks.
+FaceBook research (STS) evaluates sentence embeddings on semantic textual similarity tasks and downstream transfer tasks.<br/>
 The FaceBook encoder based on a bi-directional LSTM architecture with max pooling, trained on the Stanford Natural <br/>
-Language Inference (SNLI)dataset delivered better encoder results than the known popular approaches like SkipThought or FastSent.
+Language Inference (SNLI)dataset delivered better encoder results than the known popular approaches like SkipThought or FastSent.<br/>
 
 ### Trained model 
 
@@ -201,9 +201,9 @@ on a below 0.6 to “The subject **aroused interest**” vs “I used to be a ba
 
 ### Conclusion
 
-A better fine-tuning is required, in order to achieve higher accuracy. The value of the thresholds is important, because We are<br/>
+A better fine-tuning is required, in order to achieve higher accuracy. The value of the thresholds is important, because we are<br/>
 inspired to handle a large number of sentences on the one hand, and on the other hand maintain a high level of accuracy and reliability.<br/>
-SimSCE set the thresholds to 0.6. Set the thresholds to 0.8000, will bring a minor number of incorrectly generated sentences.<br/>
+SimSCE set the thresholds to 0.6. For thresholds of 0.8000, we will receive a small number of incorrectly generated sentences.<br/>
 But as a balance between handling mass sentences and rate of mistakes, I set the thresholds to 0.7620.<br/>
 So, if a similarity score between the input sentence and the generated one is 0.7620 or higher it is rated as 1 (Pass), otherwise it is rated as 0 (Fail). <br/>
 
@@ -233,8 +233,8 @@ So, if a similarity score between the input sentence and the generated one is 0.
    Be aware: The search results reliability decreases on brute force search<br/>
    
    
-   WARNING: found out that faiss did not well support Nvidia AMPERE GPUs (3090 and A100).
-            In that case, you should change to other GPUs or install the CPU version of faiss package.
+   WARNING: found out that faiss did not well support Nvidia AMPERE GPUs (3090 and A100).<br/>
+            In that case, you should change to other GPUs or install the CPU version of faiss package.<br/>
 
    For CPU-version faiss, run
  
