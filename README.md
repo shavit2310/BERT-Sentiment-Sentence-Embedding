@@ -76,9 +76,9 @@ pip install torch==1.7.1
 ```
 Scipy 
 
-An open-source Python library, which claims to provide “industrial-strength natural language processing”. It is the <br/>
-fastest-running solution. Contain pre-built models: Named entity recognition, part-of-speech (POS) tagging, and <br/>
-classification. Has optimized and added functions that are frequently used in NumPy and Data Science.<br/>
+An open-source Python library, which claims to provide “industrial-strength natural language processing”. <br/>
+It is the fastest-running solution. Contain pre-built models: Named entity recognition, part-of-speech (POS) tagging,<br/>
+and classification. Has optimized and added functions that are frequently used in NumPy and Data Science.<br/>
 
 ```bash
 pip install scipy
@@ -121,10 +121,9 @@ Meaning, the text has been lowercased before WordPiece tokenization.<br/>
 ### Evaluation scaling
 
 Similarity score is a continuous number from 0 (lowest-not related at all), to 1 (highest-equal sentences). <br/>
-since its calculated score, once a while it is a little bit higher or lower 1. <br/>
-As a whole, most of the generated sentences are around around 80% accurate, but there are exceptions. <br/>
-The following list defines characteristics, that review specifically, as individually and together <br/>
-(hard to validate complexity characteristics):<br/>
+since its calculated score, once a while it is a little bit higher or lower 1. As a whole, most of the generated sentences <br/>
+are around around 80% accurate, but there are exceptions. The following list defines characteristics, that review <br/>
+specifically, as individually and together (hard to validate complexity characteristics):<br/>
 
 - Diverse meaning for a word in different location in the sentence,
 - Tenses,
@@ -141,7 +140,7 @@ The following list defines characteristics, that review specifically, as individ
 - Phrases, like: give you up vs give you pencil,
 - Mistakes \ errors in the similarity score.
 
-## Review results
+## Review the results
 
 First, it is important to mention that multiple sentences can be generated, if the threshold boundary is met. And if the embedded input file<br/>
 contains the searched sentence more than once, it will be retrieved as the number of times it appears.<br/>
