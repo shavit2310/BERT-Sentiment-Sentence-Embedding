@@ -124,9 +124,9 @@ Meaning, the text has been lowercased before WordPiece tokenization.<br/>
 ### Evaluation scaling
 
 Similarity score is a continuous number from 0 (lowest-not related at all), to 1 (highest-equal sentences). <br/>
-since its calculated score, once a while it is a little bit higher or lower 1. As a whole, most of the generated sentences <br/>
-are around around 80% accurate, but there are exceptions. The following list defines characteristics, that review <br/>
-specifically, as individually and together (hard to validate complexity characteristics):<br/>
+since its calculated score, once a while it is a little bit higher or lower 1. As a whole, there are accurate generated sentences, from  <br/>
+around score 0.8, but there are exceptions. The following list defines characteristics, that review <br/>
+specifically, as individually and together (it's hard to validate complex characteristics):<br/>
 
 - Diverse meaning for a word in different location in the sentence,
 - Tenses,
@@ -147,59 +147,60 @@ specifically, as individually and together (hard to validate complexity characte
 
 First, it is important to mention that multiple sentences can be generated, if the threshold boundary is met. And if the embedded input file<br/>
 contains the searched sentence more than once, it will be retrieved as the number of times it appears.<br/>
-Let's emphasize that when a sentence generates a similar sentence, it will get the same score when it is produced in reverse order.<br/>
+Note that when a sentence generates a similar sentence, it will get the same score when it is produced in reverse order.<br/>
 Not surprisingly, there is no distinction between sentences that contain words with uppercase / lowercase, since the model training proces:<br/>
 all texts lowercase, before WordPiece tokenization.<br/>
 
-The quality of the result can be emphasized in the following example:<br/>
+The quality of the result can be emphasized in the following examples:<br/>
 
-On Tenses aspect: "The boy** jump** to the pool" vs "The boy **jumps** to the pool" scored 0.9735,<br/>
-but “He is** gone**” vs ”he **left**”, drops the score, mistakenly, to 0.7627. While “She **was** hungry” vs She **is** hungry"<br/>
-scored 0.8814, and it decreases slightly, when comparing to “She **has been** hungry“ (0.8674), but surprisingly increases for the<br/>
+On Tenses aspect: "The boy **jump** to the pool" vs "The boy **jumps** to the pool" scored 0.9735,<br/>
+but “He is **gone**” vs ”he **left**”, drops the score, mistakenly, to 0.7627. While “She **was** hungry” vs She **is** hungry"<br/>
+scored 0.8814, and it decreases slightly, when comparing to “She **has been** hungry“ (0.8674), and surprisingly increases for the<br/>
 following mistake: “**She have** been hungry” (0.9079).<br/>
-When changing gender, “**He** is hungry”, the score drops to 0.7932O.<br/>
+When changing gender, "**She** is hungrey vs "**He** is hungry”, the score drops to 0.7932O.<br/>
 Continue on the plural similarity check, and "**He** is sleeping" vs "**We** are sleeping" dropped to 0.6564.<br/>
 Seems that plural\single issue as the gender aspect is significant.<br/>
 
 When it comes to spelling mistakes, no guesses are taken: it constantly drops the score.<br/>
-like in: "This **cource** is good" vs "This **course** is good" scored 0.4905. But on a meaning missing even a mistake can increases:<br/>
+like in: "This **cource** is good" vs "This **course** is good" scored 0.4905. But on a mistake involve meaningful word, it increases:<br/>
 "We will stay **tii** you go" vs "We will stay only for you", scored 0.7471, Which is very close score to an accurate similarity, as:<br/>
 "We will stay only for you" vs "We will stay until you come" scored on **0.8**.<br/>
-Maybe unclear words 'weights' less, and a similarity sentence can be reached.<br/>
+Maybe, unclear words 'weights' less, then mistakes, and a similarity sentence can be reached.<br/>
 
-On the negativity aspect “The clerk **is not nice**” scored less than 0.6 similarity to the positive “The clerk **is nice**”,<br/>
-and rightly to “The clerk **is rude**” as 0.8976. But, surprisingly (and wrongly) vs “The **nice clerk left**” scored 0.5621<br/>
+On the negativity aspect “The clerk **is not nice**” scored less than 0.6 similarity to the positive “The clerk **is nice**”.<br/>
+But rightly to  “The clerk **is not nice**” vs “The clerk **is rude**” as 0.8976. But, surprisingly (and wrongly) <br/>
+“The clerk **is not nice**” vs “The **nice clerk left**” scored 0.5621<br/>
 
-It is clear that punctuation has a strong influence: Too low score for: "A man is playing a guitar" vs "Who is playing the guitar?"<br/>
-"Never**!!** gonna give you up?" vs "Never gonna give you up" (0.6989)<br/>
+It is clear that punctuation has a strong influence: too low score for: "A man is playing a guitar" vs "Who is playing the guitar?"<br/>
+"Never **!!** gonna give you up?" vs "Never gonna give you up" (0.6989). <br/>
 
-And if we are on the Street lingo (jargon), like “gonna” and “wonna";<br/>
-"I am going to stop talking with you” vs “I gonna stop talking with you”, an accurate score give -  0.9470.<br/>
+And we review the street lingo (jargon), like “gonna” and “wonna";<br/>
+"I **am going** to stop talking with you” vs “I **gonna** stop talking with you”, an accurate score give -  0.9470.<br/>
 
 A definite use like: 'A' vs 'The’, seems to have minor influence:<br/>
 “The cellulars is not stolen”, vs “And, a cellulars is not stolen” (0.9708), which reveals that unrelated words (meaning aspects),<br/>
-does not have any effect. Here an **And** is the sentence prefix, but when the unfinished sentence, might have significance:<br/>
+does not have any effect. Here an **And** is the sentence prefix, but when we have unfinished sentence, it might be significant:<br/>
  “a cellulars is not stolen, **back to**” vs “The cellulars is not stolen" (0.9010).<br/>
 
-On adjectives various scorers attached: “The ugly cellular is stolen” vs “The pretty cellular is stolen” (0.8650).<br/>
-Founded to be slightly Below, for a adjective omission: “The pretty cellular is stolen” vs “The cellulars is stolen” (0.8791),<br/>
-and surprisingly, on a mistake: ”The pretty cellular is stolen” vs “The **pritty** cellular is stolen” increases to 0.8832.<br/>
-On the sentence's subject it clearer: “The **cat** is running” vs “The** dog** is running” scored very low, limit of 0.4155,<br/>
-and on the predict (in grammar): “the dog is hungry” vs “The dog is running” scored little bit higher, but not much (0.5790).<br/>
+On adjectives, we reveal various scorers: “The ugly cellular is stolen” vs “The pretty cellular is stolen” (0.8650).<br/>
+Founded to be slightly Below, for a adjective omission: “The **pretty** cellular is stolen” vs “The cellulars is stolen” (0.8791).<br/>
+Surprisingly, the score increases to 0.8832 on the following mistake: ”The pretty cellular is stolen” vs “The **pritty** cellular is stolen”.<br/>
+On the sentence's subject it clearer: “The **cat** is running” vs “The **dog** is running” scored very low, limit of 0.4155,<br/>
+and on the predict (in grammar): “the dog **is hungry**” vs “The dog **is running**” scored little bit higher, but not much (0.5790).<br/>
  
 On prepositioning, it depends, if it's a phrase:<br/>
-"I will **give you up**” vs “I will **give you a** pencil” scored under 0.6, And on till\until wrongly similarity score<br/>
-is too high - 0.9012, thus it's opposite meaning. "We will **go until** you come" vs "We will **stay until** you come".<br/>
+"I will **give you up**” vs “I will **give you a** pencil”, scored under 0.6, And on till\until the similarity score,<br/>
+wrongly, is too high - 0.9012, thus it's opposite meaning. "We will **go until** you come" vs "We will **stay until** you come".<br/>
 
 Challenging is a diverse meaning for a word in different locations in the sentence:<br/>
-“The **drill** is missing” vs “I have been to the dentist many times, so I know the **drill**”, rightly, match not found.<br/>
-And, scored low on similarity check: “She had a boyfriend with a wooden leg but **broke it off**” vs “she **broke the partnership**” (0.5384),<br/>
+“The **drill** is missing” vs “I have been to the dentist many times, so I know the **drill**”, rightly, match was not found.<br/>
+And scored low on: “She had a boyfriend with a wooden leg but **broke it off**” vs “she **broke the partnership**” (0.5384),<br/>
 “She had a boyfriend with a wooden leg but **broke it off**” vs “A fight broke out between the stepmother and the man before her death” (0.4313).<br/>
-Where as “she **broke the partnership**” vs “she “She had a boyfriend with a wooden leg but **broke it off**” vs” scored as 0.5220,<br/>
-which can have been considered as similar meaning, if the following relatively to “She left” wouldn't receive the 0.5194 score<br/>
-(which should not be found matches, at all).<br/>
+Where as “she **broke the partnership**” vs “She had a boyfriend with a wooden leg but **broke it off**” scored as 0.5220,<br/>
+that could have been considered as good similar meaning, if we would'nt found the following:<br/>
+“she **broke the partnership**” vs “She left” 0n score 0.5194 (which should not be found matches, at all).<br/>
 "life is pointless” vs “Without geometry life is pointless” (wrongly, 0.6498). Where **interest** meaning was not achieved,<br/>
-on a below 0.6 to “The subject **aroused interest**” vs “I used to be a banker, but comparing to "I **lost interest**” or to<br/>
+on a below 0.6 to “The subject **aroused interest**” vs “I used to be a banker, but "I **lost interest**” or to<br/>
 “As an inverter, I lost interest”, it should have been higher.<br/>
 
 ### Conclusion
@@ -232,14 +233,12 @@ otherwise it is rated as 0 (Fail).
    pip install SimCSE
    ```
 
-3. On RuntimeError: Fail to import faiss. If you want to use faiss, install faiss through PyPI.<br/>
-   Now the program continues with brute force search.<br/>
-   Be aware: The search results reliability decreases on brute force search<br/>
-   
+3. On RuntimeError: always appears the a warning message: "Fail to import faiss. If you want to use faiss, install </br>
+   faiss through PyPI.Now the program continues with brute force search".<br/>  
    
    WARNING: found out that faiss did not well support Nvidia AMPERE GPUs (3090 and A100).<br/>
             In that case, you should change to other GPUs or install the CPU version of faiss package.<br/>
-
+  
    For CPU-version faiss, run
  
    ```bash
@@ -256,7 +255,7 @@ otherwise it is rated as 0 (Fail).
 
 Details on the [SimSCE](https://arxiv.org/pdf/2104.08821.pdf) framework research.<br/>
 Details on [SentEval](https://research.fb.com/downloads/senteval/) the evaluation code for sentence embeddings. <br/>
-Introduction to the World BERT [BERT](https://www.analyticsvidhya.com/blog/2019/09/demystifying-bert-groundbreaking-nlp-framework/). <br/>
+Introduction to the World of BERT [BERT](https://www.analyticsvidhya.com/blog/2019/09/demystifying-bert-groundbreaking-nlp-framework/). <br/>
 [Bert_uncased](https://huggingface.co/bert-base-uncased) pre-trained models. <br/>
 
 ## Citation
