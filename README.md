@@ -143,7 +143,7 @@ specifically, as individually and together (it's hard to validate complex charac
 - Phrases, like: give you up vs give you pencil,
 - Mistakes \ errors in the similarity score.
 
-## Review the results
+### Review the results
 
 First, it is important to mention that multiple sentences can be generated, if the threshold boundary is met. And if the embedded input file<br/>
 contains the searched sentence more than once, it will be retrieved as the number of times it appears.<br/>
